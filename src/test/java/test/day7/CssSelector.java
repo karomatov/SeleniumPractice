@@ -1,5 +1,6 @@
 package test.day7;
 
+import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,6 +8,7 @@ import utils.BrowserFactory;
 import utils.BrowserUtils;
 
 import java.util.List;
+import java.util.Locale;
 
 public class CssSelector {
     public static void main(String[] args) {
@@ -29,6 +31,8 @@ public class CssSelector {
 
         WebElement p = driver.findElement(By.cssSelector(".container > p"));
         System.out.println(p.getText());
+
+        Faker dummy = new Faker(Locale.forLanguageTag("ru"));
 
         driver.quit();
 
