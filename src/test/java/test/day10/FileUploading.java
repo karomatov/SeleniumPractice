@@ -1,6 +1,7 @@
 package test.day10;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -8,6 +9,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utils.BrowserFactory;
 import utils.BrowserUtils;
+
+import static org.openqa.selenium.Keys.ENTER;
 
 public class FileUploading {
 
@@ -60,6 +63,7 @@ public class FileUploading {
         driver.findElement(By.xpath("//*[text()='Click for JS Prompt']")).click();
         System.out.println(driver.switchTo().alert().getText());
         driver.switchTo().alert().sendKeys("Selenium is Fun!!!");
+        BrowserUtils.wait(3);
         driver.switchTo().alert().accept();
         System.out.println(driver.findElement(By.id("result")).getText());
     }
