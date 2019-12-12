@@ -2,3 +2,4 @@ Cats
 Dogs
 Horses
 Lions
+Wolves
