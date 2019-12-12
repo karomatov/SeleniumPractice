@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Regrassion">
+<!--    <test name="Login test">-->
+<!--        <classes>-->
+<!--            <class name="test.VyTrack.LoginTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="Create a Car test">-->
+<!--        <classes>-->
+<!--            <class name="test.VyTrack.CreatCarTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+<test name="Vytrack tests">
+    <parameter name="test" value="regression"></parameter>
+    <packages>
+        <package name="test.VyTrack"/>
+    </packages>
+</test>
+    
+</suite>

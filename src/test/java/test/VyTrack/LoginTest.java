@@ -4,7 +4,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.LogInPage;
+import pages.LoginPage;
 import utils.Driver;
 import utils.TestBase;
 
@@ -13,7 +13,7 @@ public class LoginTest extends TestBase {
     @Test(description = "Verify that page title is a 'Dashboard'")
     public void test1(){
         //create page object
-        LogInPage loginPage = new LogInPage();
+        LoginPage loginPage = new LoginPage();
         //call login method
         //provide username and password
         loginPage.login("storemanager85", "UserUser123");

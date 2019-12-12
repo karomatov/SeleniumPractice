@@ -3,35 +3,38 @@ package test.VyTrack;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import pages.LogInPage;
+import pages.LoginPage;
 import utils.TestBase;
 
 public class SmokeTest extends TestBase {
 
-
     @Test(dataProvider = "navigationInfo")
-    public void smokeTest(String moduleName, String subModule, String pageSubtitle){
+    public void smokeTest(String moduleName, String subModuleName, String pageSubTitle) {
+        extentTest = extentReports.createTest("Verify that page subtitle is equals to " + pageSubTitle);
 
-        extentTest = extentReports.createTest("Verify that page subtitle is equals to " + pageSubtitle);
-        LogInPage logInPage = new LogInPage();
+        LoginPage loginPage = new LoginPage();
+        loginPage.login("storemanager85", "UserUser123");
 
-        logInPage.login("storemanager85", "UserUser123");
-        logInPage.navigateTo(moduleName, subModule);
+        loginPage.navigateTo(moduleName, subModuleName);
 
-        Assert.assertEquals(logInPage.getPageSubTitle(), pageSubtitle);
+        loginPage.waitUntilLoaderMaskDisappear();
+
+        Assert.assertEquals(loginPage.getPageSubTitle(), pageSubTitle);
+
+        extentTest.pass("Verified that page subtitle '" + pageSubTitle + "' is displayed");
 
     }
 
     @DataProvider(name = "navigationInfo")
-    public Object[][] navigationInfo(){
-        return new Object [][]{
-                {"Dashboards", "Dashboard","Dashboard" },
-                {"Dashboards", "Manage Dashboards","All Manage Dashboards" },
-                {"Fleet", "Vehicles","All Cars" },
-                {"Customers", "Accounts","All Accounts" },
-                {"Activities", "Calls","All Calls" },
-                {"Activities", "Calendar Events","All Calendar Events" }
+    public Object[][] navigationInfo() {
+        return new Object[][]{
+                {"Dashboards", "Dashboard", "Dashboard"},
+                {"Dashboards", "Manage Dashboards", "All Manage Dashboards"},
+                {"Fleet", "Vehicles", "All Cars"},
+                {"Customers", "Accounts", "All Accounts"},
+                {"Activities", "Calls", "All Calls"},
+                {"Activities", "Calendar Events", "All Calendar Events"},
+                {"Sales", "Opportunities", "Open Opportunities"}
         };
     }
-
 }

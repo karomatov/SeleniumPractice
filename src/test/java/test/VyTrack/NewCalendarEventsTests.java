@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CalendarEventsPage;
 import pages.CreateCalendarEventPage;
-import pages.LogInPage;
+import pages.LoginPage;
 
 import utils.TestBase;
 
@@ -15,7 +15,7 @@ public class NewCalendarEventsTests extends TestBase {
     public void test1() {
         extentTest = extentReports.createTest("Verify that page subtitle is equals to 'All Calendar Events'");
 
-        LogInPage loginPage = new LogInPage(); //login page object
+        LoginPage loginPage = new LoginPage(); //login page object
 
         loginPage.login("storemanager85", "UserUser123");
         loginPage.navigateTo("Activities", "Calendar Events");

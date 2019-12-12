@@ -50,7 +50,7 @@ public class BasePage {
      * @return true if loader mask is gone, false if something went wrong
      */
     public boolean waitUntilLoaderMaskDisappear() {
-        WebDriverWait wait = new WebDriverWait(Driver.get(), 10);
+        WebDriverWait wait = new WebDriverWait(Driver.get(), 30);
         try {
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("div[class='loader-mask shown']")));
             return true;
@@ -77,7 +77,7 @@ public class BasePage {
         String moduleLocator = "//*[normalize-space()='" + moduleName + "' and @class='title title-level-1']";
         String subModuleLocator = "//*[normalize-space()='" + subModuleName + "' and @class='title title-level-2']";
 
-        WebDriverWait wait = new WebDriverWait(Driver.get(), 10);
+        WebDriverWait wait = new WebDriverWait(Driver.get(), 30);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(moduleLocator)));
 
         WebElement module = Driver.get().findElement(By.xpath(moduleLocator));
@@ -85,11 +85,15 @@ public class BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(module));
 
         waitUntilLoaderMaskDisappear();
+
+       BrowserUtils.clickWithWait(module); //if click is not working well
         module.click(); //once we clicked on module, submodule should be visible
 
         WebElement subModule = Driver.get().findElement(By.xpath(subModuleLocator));
         wait.until(ExpectedConditions.visibilityOf(subModule));
         subModule.click();
+        //it waits until page is loaded and ajax calls are done
+        BrowserUtils.waitForPageToLoad(5);
     }
 
     /**
